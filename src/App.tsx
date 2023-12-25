@@ -1,21 +1,14 @@
-import { useEffect } from "react";
 import "./App.css";
+import useGame from "./lib/hooks/useGame";
+
 function App() {
-    useEffect(() => {
-        const fetchGames = async () => {
-            const games = await fetch(`https://api.rawg.io/api/games?key=${import.meta.env.VITE_API_KEY}`);
-            const result = await games.json();
-            console.log(result);
-        };
+    const { listOfGames } = useGame();
 
-        fetchGames();
-
-        return () => {};
-    }, []);
+    console.log(listOfGames);
 
     return (
         <div>
-            <h1 className="text-4xl font-bold">Hello</h1>
+            <h1 className="text-4xl font-bold nav-brand">W - GAME</h1>
         </div>
     );
 }
