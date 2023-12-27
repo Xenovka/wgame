@@ -9,7 +9,7 @@ interface Requirements {
     recommended: string;
 }
 
-interface Results {
+export interface GameResults {
     id: number;
     slug: string;
     name: string;
@@ -38,5 +38,5 @@ export interface Games {
     count: number;
     next: string;
     previous: string;
-    results: Results[];
+    results: GameResults[];
 }
