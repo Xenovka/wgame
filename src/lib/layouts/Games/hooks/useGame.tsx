@@ -24,7 +24,6 @@ const useGame = () => {
             async (entries) => {
                 const lastCard = entries[0];
                 if (lastCard.isIntersecting) {
-                    console.log(nextListOfGamesURL);
                     fetchNextListOfGames();
                     observer.unobserve(lastCard.target);
                 }
