@@ -5,17 +5,14 @@ import { Games } from "../../../types/Games";
 import { useGameStore } from "../../../store/GameStore";
 
 const useGame = () => {
-    const { listOfGames, updateListOfGames } = useGameStore((state) => state);
+    const { listOfGames, updateListOfGames, nextListOfGamesURL, updateNextListOfGamesURL } = useGameStore(
+        (state) => state
+    );
 
     const cardRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (listOfGames) return;
-
-        const fetchListOfGames = async () => {
-            const games: Games = await getListOfGames();
-            updateListOfGames(games.results);
-        };
 
         fetchListOfGames();
 
@@ -23,20 +20,13 @@ const useGame = () => {
     });
 
     useEffect(() => {
-        const fetchNextListOfGames = async () => {
-            const games: Games = await getListOfGames();
-            const fetchNextListOfGames = await fetch(games.next);
-            const nextListOfGames = await fetchNextListOfGames.json();
-            updateListOfGames([...listOfGames!, ...nextListOfGames.results]);
-        };
-
         const observer = new IntersectionObserver(
             async (entries) => {
                 const lastCard = entries[0];
                 if (lastCard.isIntersecting) {
+                    console.log(nextListOfGamesURL);
                     fetchNextListOfGames();
                     observer.unobserve(lastCard.target);
-                    console.log("Intersecting");
                 }
             },
             {
@@ -49,9 +39,23 @@ const useGame = () => {
         }
 
         return () => {
-            if (cardRef.current) observer.unobserve(cardRef.current);
+            observer.disconnect();
         };
-    }, [cardRef.current]);
+    }, [cardRef, listOfGames, updateListOfGames]);
+
+    const fetchListOfGames = async () => {
+        const games: Games = await getListOfGames();
+        updateListOfGames(games.results);
+        updateNextListOfGamesURL(games.next);
+    };
+
+    const fetchNextListOfGames = async () => {
+        const fetchNextListOfGames =
+            nextListOfGamesURL !== "" ? await fetch(nextListOfGamesURL) : await getListOfGames();
+        const nextList: Games = await fetchNextListOfGames.json();
+        updateListOfGames([...listOfGames!, ...nextList.results]);
+        updateNextListOfGamesURL(nextList.next);
+    };
 
     return { cardRef, listOfGames };
 };
