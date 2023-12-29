@@ -12,7 +12,7 @@ interface Action {
     updateListOfGames: (games: GameResults[]) => void;
     updateNextListOfGamesURL: (nextListOfGamesURL: string) => void;
     updatePrevListOfGamesURL: (prevListOfGamesURL: string) => void;
-    updateSearchedGames: (searchedGames: GameResults[]) => void;
+    updateSearchedGames: (searchedGames: GameResults[] | null) => void;
 }
 
 export const useGameStore = create<State & Action>((set) => ({
