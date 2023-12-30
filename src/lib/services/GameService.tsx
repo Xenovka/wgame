@@ -26,3 +26,16 @@ export const searchGames = async (keyword: string) => {
         console.error(error);
     }
 };
+
+export const getGameDetails = async (gameId: string) => {
+    try {
+        const gameDetails = await fetch(`https://api.rawg.io/api/games/${gameId}?key=${import.meta.env.VITE_API_KEY}`, {
+            mode: "cors"
+        });
+
+        const result = await gameDetails.json();
+        return result;
+    } catch (error) {
+        console.error(error);
+    }
+};
