@@ -1,9 +1,9 @@
 import { Card, CardBody, CardHeader } from "@nextui-org/react";
-import { GameResults } from "../../types/Games";
+import { IGameResults } from "../../types/Games";
 import { RefObject } from "react";
 import { useNavigate } from "react-router-dom";
 
-function GameCard({ game, cardRef }: { game: GameResults; cardRef: RefObject<HTMLDivElement> | null }) {
+function GameCard({ game, cardRef }: { game: IGameResults; cardRef: RefObject<HTMLDivElement> | null }) {
     const navigate = useNavigate();
 
     return (

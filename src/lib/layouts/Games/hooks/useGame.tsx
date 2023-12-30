@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 import { getListOfGames } from "../../../services/GameService";
-import { Games } from "../../../types/Games";
+import { IGames } from "../../../types/Games";
 import { useGameStore } from "../../../store/GameStore";
 
 const useGame = () => {
@@ -43,7 +43,7 @@ const useGame = () => {
     }, [cardRef, listOfGames, updateListOfGames]);
 
     const fetchListOfGames = async () => {
-        const games: Games = await getListOfGames();
+        const games: IGames = await getListOfGames();
         updateListOfGames(games.results);
         updateNextListOfGamesURL(games.next);
     };
@@ -51,7 +51,7 @@ const useGame = () => {
     const fetchNextListOfGames = async () => {
         const fetchNextListOfGames =
             nextListOfGamesURL !== "" ? await fetch(nextListOfGamesURL) : await getListOfGames();
-        const nextList: Games = await fetchNextListOfGames.json();
+        const nextList: IGames = await fetchNextListOfGames.json();
         updateListOfGames([...listOfGames!, ...nextList.results]);
         updateNextListOfGamesURL(nextList.next);
     };

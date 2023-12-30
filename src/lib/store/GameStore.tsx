@@ -1,20 +1,20 @@
 import { create } from "zustand";
-import { GameResults } from "../types/Games";
+import { IGameResults } from "../types/Games";
 import { getGameDetails } from "../services/GameService";
 
 interface State {
-    listOfGames: GameResults[] | null;
+    listOfGames: IGameResults[] | null;
     nextListOfGamesURL: string;
     prevListOfGamesURL: string;
-    searchedGames: GameResults[] | null;
-    gameDetails: GameResults | null;
+    searchedGames: IGameResults[] | null;
+    gameDetails: IGameResults | null;
 }
 
 interface Action {
-    updateListOfGames: (games: GameResults[]) => void;
+    updateListOfGames: (games: IGameResults[]) => void;
     updateNextListOfGamesURL: (nextListOfGamesURL: string) => void;
     updatePrevListOfGamesURL: (prevListOfGamesURL: string) => void;
-    updateSearchedGames: (searchedGames: GameResults[] | null) => void;
+    updateSearchedGames: (searchedGames: IGameResults[] | null) => void;
     updateGameDetails: (gameId: string) => void;
 }
 
