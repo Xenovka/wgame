@@ -10,6 +10,7 @@ export interface IGameDetails {
     name: string;
     name_original: string;
     description: string;
+    description_raw: string;
     metacritic: number;
     released: string;
     tba: true;

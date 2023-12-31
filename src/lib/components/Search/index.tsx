@@ -16,7 +16,7 @@ function Search() {
     return (
         <div className="relative flex flex-col py-4 mx-auto w-10/12">
             <input
-                className="outline-none px-4 py-4 text-sm text-white w-full bg-neutral-800 rounded-full"
+                className="outline-none px-6 py-4 text-sm text-white w-full bg-neutral-800 bg-opacity-80 rounded-full"
                 type="text"
                 placeholder="Search games..."
                 onChange={(e) => onSearchGames(e.target.value)}

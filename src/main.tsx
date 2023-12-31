@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
         <NextUIProvider>
             <NextThemesProvider>
-                <main className="dark text-foreground bg-background p-4">
+                <main className="dark text-foreground p-4">
                     <NavBar />
                     <RouterProvider router={routes} />
                 </main>
