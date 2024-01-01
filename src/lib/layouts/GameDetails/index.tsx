@@ -16,7 +16,7 @@ function GameDetails() {
                 />
                 <div className="absolute w-full h-full bg-gradient-to-t from-black from-40%"></div>
             </div>
-            <div className="flex flex-col absolute top-0 left-0 justify-center h-screen">
+            <div className="-z-10 flex flex-col absolute top-0 left-0 justify-center h-screen">
                 <h1 className="text-6xl font-bold mx-auto w-fit">{gameDetails.name}</h1>
                 <div className="w-4/6 mx-auto mt-28">
                     <p className="text-center">{gameDetails.description_raw}</p>
