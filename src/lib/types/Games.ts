@@ -9,6 +9,11 @@ interface Requirements {
     recommended: string;
 }
 
+interface Image {
+    image: string;
+    hidden: boolean;
+}
+
 export interface IGameResults {
     id: number;
     slug: string;
@@ -32,6 +37,13 @@ export interface IGameResults {
         released_at: string;
         requirements: Requirements;
     };
+}
+
+export interface IGameScreenshots {
+    count: number;
+    next: string;
+    previous: string;
+    results: Image[];
 }
 
 export interface IGames {

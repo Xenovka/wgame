@@ -2,7 +2,7 @@ import { Route, createBrowserRouter, createRoutesFromElements } from "react-rout
 
 import HomePage from "../lib/pages/Home";
 import DetailsPage from "../lib/pages/Details";
-import { getGameDetails } from "../lib/services/GameService";
+import { getGameDetails, getGameScreenshots } from "../lib/services/GameService";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -11,8 +11,11 @@ const router = createBrowserRouter(
             <Route
                 path="/game/:gameId"
                 element={<DetailsPage />}
-                loader={({ params }) => {
-                    return getGameDetails(params.gameId as string);
+                loader={async ({ params }) => {
+                    const gameDetails = await getGameDetails(params.gameId as string);
+                    const gameScreenshots = await getGameScreenshots(gameDetails.slug);
+
+                    return { gameDetails, gameScreenshots };
                 }}
             />
         </>
