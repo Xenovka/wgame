@@ -17,3 +17,13 @@
     font-family: "Silkscreen", sans-serif;
     font-size: 2rem;
 }
+
+.card-backlight:hover {
+    box-shadow: 0px 0px 40px -5px rgba(255, 255, 255, 1);
+    transition: all 0.2s ease-in-out;
+}
+
+.game-card:hover .card-image {
+    opacity: 0.75;
+    transform: scale(1.05);
+}
