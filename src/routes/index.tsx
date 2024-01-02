@@ -3,10 +3,11 @@ import { Route, createBrowserRouter, createRoutesFromElements } from "react-rout
 import HomePage from "../lib/pages/Home";
 import DetailsPage from "../lib/pages/Details";
 import { getGameDetails, getGameScreenshots } from "../lib/services/GameService";
+import { Fragment } from "react";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
-        <>
+        <Fragment>
             <Route path="/" element={<HomePage />} />
             <Route
                 path="/game/:gameId"
@@ -18,7 +19,7 @@ const router = createBrowserRouter(
                     return { gameDetails, gameScreenshots };
                 }}
             />
-        </>
+        </Fragment>
     )
 );
 

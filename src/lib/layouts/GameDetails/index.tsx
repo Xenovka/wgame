@@ -3,7 +3,7 @@ import { useLoaderData } from "react-router-dom";
 
 import { IGameDetails } from "../../types/GameDetails";
 import { IGameScreenshots } from "../../types/Games";
-import animatedMouse from "../../../../public/animatedMouse.json";
+import animatedMouse from "../../../assets/animatedMouse.json";
 import Lottie from "lottie-react";
 
 interface ILoader {
@@ -28,13 +28,13 @@ function GameDetails() {
                 />
                 <div className="absolute w-full h-full bg-gradient-to-t from-black from-40%"></div>
             </div>
-            <div className="-z-10 flex flex-col relative -top-20 left-0 justify-center h-screen">
+            <div className="z-10 flex flex-col relative -top-20 left-0 justify-center h-screen">
                 <h1 className="text-6xl font-bold mx-auto w-fit">{gameDetails.name}</h1>
                 <div className="w-4/6 mx-auto mt-28">
                     <p className="text-center">{gameDetails.description_raw}</p>
                 </div>
-                <div className="absolute bottom-[15%] left-1/2 -translate-x-1/2 flex flex-col justify-center items-center">
-                    <Lottie animationData={animatedMouse} loop={true} className="w-16 invert" />
+                <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2 flex flex-col justify-center items-center cursor-pointer">
+                    <Lottie animationData={animatedMouse} loop={true} className="w-10" />
                     <p>Scroll Down</p>
                 </div>
             </div>
