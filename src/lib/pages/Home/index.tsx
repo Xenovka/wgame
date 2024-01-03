@@ -5,7 +5,7 @@ function HomePage() {
     return (
         <div className="grid grid-cols-12">
             <SideBar />
-            <Games />;
+            <Games />
         </div>
     );
 }
