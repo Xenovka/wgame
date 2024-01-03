@@ -14,7 +14,7 @@ function Search() {
     }, 500);
 
     return (
-        <div className="relative flex flex-col py-4 mx-auto w-10/12">
+        <div className="relative grid col-span-9 py-4 w-full">
             <input
                 className="outline-none px-6 py-4 text-sm text-white w-full bg-neutral-800 bg-opacity-80 rounded-full"
                 type="text"

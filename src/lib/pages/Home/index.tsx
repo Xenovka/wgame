@@ -1,9 +1,11 @@
 import Games from "../../layouts/Games";
+import SideBar from "../../layouts/SideBar";
 
 function HomePage() {
     return (
-        <div>
-            <Games />
+        <div className="grid grid-cols-12">
+            <SideBar />
+            <Games />;
         </div>
     );
 }
