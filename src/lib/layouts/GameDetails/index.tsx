@@ -38,15 +38,18 @@ function GameDetails() {
                     <p>Scroll Down</p>
                 </div>
             </div>
-            <div className="grid grid-cols-3">
-                {gameScreenshots.results.map((screenshot, index) => (
-                    <img
-                        key={index}
-                        src={screenshot.image}
-                        alt={`${gameDetails.name}-${index}`}
-                        className="w-96 h-96 object-cover"
-                    />
-                ))}
+            <div className="grid grid-cols-12 gap-6 w-full items-center mx-auto">
+                <h2 className="grid col-start-2 col-span-3 text-6xl font-bold">Screenshots</h2>
+                <div className="col-start-7 col-span-6 grid w-fit grid-cols-2 gap-2">
+                    {gameScreenshots.results.map((screenshot, index) => (
+                        <img
+                            key={index}
+                            src={screenshot.image}
+                            alt={`${gameDetails.name}-${index}`}
+                            className="w-96 object-cover rounded-md"
+                        />
+                    ))}
+                </div>
             </div>
         </Fragment>
     );
