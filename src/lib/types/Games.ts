@@ -52,3 +52,21 @@ export interface IGames {
     previous: string;
     results: IGameResults[];
 }
+interface ITrailerResultsData {
+    480: string;
+    max: string;
+}
+
+interface ITrailerResults {
+    id: number;
+    name: string;
+    preview: string;
+    data: ITrailerResultsData;
+}
+
+export interface IGameTrailers {
+    count: number;
+    next: string;
+    previous: string;
+    results: ITrailerResults[];
+}

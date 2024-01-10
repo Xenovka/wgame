@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 
 import { getListOfGames } from "../../../services/GameService";
-import { IGames } from "../../../types/Games";
 import { useGameStore } from "../../../store/GameStore";
+import { IGames } from "../../../types/Games";
 
 const useGame = () => {
     const { listOfGames, updateListOfGames, nextListOfGamesURL, updateNextListOfGamesURL } = useGameStore(
@@ -10,14 +10,6 @@ const useGame = () => {
     );
 
     const cardRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        if (listOfGames) return;
-
-        fetchListOfGames();
-
-        return () => {};
-    });
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -42,8 +34,7 @@ const useGame = () => {
         };
     }, [cardRef, listOfGames, updateListOfGames]);
 
-    const fetchListOfGames = async () => {
-        const games: IGames = await getListOfGames();
+    const fetchListOfGames = async (games: IGames) => {
         updateListOfGames(games.results);
         updateNextListOfGamesURL(games.next);
     };
@@ -56,7 +47,7 @@ const useGame = () => {
         updateNextListOfGamesURL(nextList.next);
     };
 
-    return { cardRef, listOfGames };
+    return { fetchListOfGames, cardRef, listOfGames };
 };
 
 export default useGame;

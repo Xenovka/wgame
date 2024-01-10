@@ -16,7 +16,7 @@ function Search() {
     return (
         <div className="relative grid col-span-9 py-4 w-full">
             <input
-                className="outline-none px-6 py-4 text-sm text-white w-full bg-neutral-800 bg-opacity-80 rounded-full"
+                className="outline-none px-6 py-4 text-sm text-white w-full bg-neutral-800 bg-opacity-80 focus:bg-slate-100 focus:text-black transition-all duration-250 rounded-full"
                 type="text"
                 placeholder="Search games..."
                 onChange={(e) => onSearchGames(e.target.value)}

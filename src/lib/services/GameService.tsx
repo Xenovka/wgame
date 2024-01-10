@@ -54,3 +54,29 @@ export const getGameScreenshots = async (gameSlug: string) => {
         console.error(error);
     }
 };
+
+export const getGameTrailers = async (gameId: string) => {
+    try {
+        const gameTrailers = await fetch(`https://api.rawg.io/api/games/${gameId}/movies?key=${API_KEY}`, {
+            mode: "cors"
+        });
+
+        const result = await gameTrailers.json();
+        return result;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+export const getPopularGames = async () => {
+    try {
+        const popularGames = await fetch(`https://api.rawg.io/api/games?metacritic=85,100&key=${API_KEY}`, {
+            mode: "cors"
+        });
+
+        const result = await popularGames.json();
+        return result;
+    } catch (error) {
+        console.error(error);
+    }
+};

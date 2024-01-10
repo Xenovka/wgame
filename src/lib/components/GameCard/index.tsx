@@ -8,7 +8,7 @@ function GameCard({ game, cardRef }: { game: IGameResults; cardRef: RefObject<HT
 
     return (
         <Card
-            className="bg-neutral-800 bg-opacity-30 rounded-xl game-card card-backlight"
+            className="bg-neutral-800 bg-opacity-30 rounded-xl game-card"
             ref={cardRef}
             isPressable
             disableRipple
@@ -16,7 +16,7 @@ function GameCard({ game, cardRef }: { game: IGameResults; cardRef: RefObject<HT
                 navigate(`/game/${game.id}`);
             }}
         >
-            <CardHeader className="w-full overflow-hidden">
+            <CardHeader className="w-full overflow-hidden p-0">
                 <img
                     alt="Card background"
                     className="w-full h-52 inline-block bg-contain card-image ease-in duration-200"
