@@ -32,6 +32,8 @@ const useGame = () => {
         return () => {
             observer.disconnect();
         };
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cardRef, listOfGames, updateListOfGames]);
 
     const fetchListOfGames = async (games: IGames) => {

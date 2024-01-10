@@ -13,6 +13,8 @@ function HomePage() {
         fetchListOfGames(games);
 
         return () => {};
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [games]);
 
     return (
