@@ -1,13 +1,15 @@
 import { create } from "zustand";
-import { IGameResults } from "../types/Games";
-import { getGameDetails } from "../services/GameService";
+import { IGameResults, IGameScreenshots, IGameTrailers } from "../types/Games";
+import { IGameDetails } from "../types/GameDetails";
 
 interface State {
     listOfGames: IGameResults[] | null;
     nextListOfGamesURL: string;
     prevListOfGamesURL: string;
     searchedGames: IGameResults[] | null;
-    gameDetails: IGameResults | null;
+    gameDetails: IGameDetails | null;
+    gameScreenshots: IGameScreenshots | null;
+    gameTrailers: IGameTrailers | null;
     isGamesLoading: boolean;
     isGameDetailsLoading: boolean;
     isSearchLoading: boolean;
@@ -19,8 +21,10 @@ interface Action {
     updateNextListOfGamesURL: (nextListOfGamesURL: string) => void;
     updatePrevListOfGamesURL: (prevListOfGamesURL: string) => void;
     updateSearchedGames: (searchedGames: IGameResults[] | null) => void;
-    updateGameDetails: (gameId: string) => void;
+    updateGameDetails: (gameDetails: IGameDetails) => void;
     updateLoading: (stateName: string, condition: boolean) => void;
+    updateGameScreenshots: (gameScreenshots: IGameScreenshots) => void;
+    updateGameTrailers: (gameTrailers: IGameTrailers) => void;
 }
 
 export const useGameStore = create<State & Action>((set) => ({
@@ -34,13 +38,14 @@ export const useGameStore = create<State & Action>((set) => ({
     isLoadingMoreGames: false,
     searchedGames: null,
     gameDetails: null,
+    gameScreenshots: null,
+    gameTrailers: null,
     updateListOfGames: (listOfGames) => set({ listOfGames }),
     updateNextListOfGamesURL: (nextListOfGamesURL) => set({ nextListOfGamesURL }),
     updatePrevListOfGamesURL: (prevListOfGamesURL) => set({ prevListOfGamesURL }),
     updateSearchedGames: (searchedGames) => set({ searchedGames }),
-    updateGameDetails: async (gameId) => {
-        const gameDetails = await getGameDetails(gameId);
-        set({ gameDetails });
-    },
-    updateLoading: (stateName, condition) => set({ [stateName]: condition })
+    updateGameDetails: (gameDetails) => set({ gameDetails }),
+    updateLoading: (stateName, condition) => set({ [stateName]: condition }),
+    updateGameScreenshots: (gameScreenshots) => set({ gameScreenshots }),
+    updateGameTrailers: (gameTrailers) => set({ gameTrailers })
 }));
