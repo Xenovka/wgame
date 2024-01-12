@@ -13,6 +13,8 @@ function App() {
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/popular" element={<HomePage />} />
+                    <Route path="/new-releases" element={<HomePage />} />
+                    <Route path="/upcoming" element={<HomePage />} />
                     <Route
                         path="/game/:gameId"
                         element={<DetailsPage />}

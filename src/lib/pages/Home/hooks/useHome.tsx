@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { IGames } from "../../../types/Games";
 import { useGameStore } from "../../../store/GameStore";
-import { getListOfGames, getPopularGames } from "../../../services/GameService";
+import { getListOfGames, getNewGames, getPopularGames, getUpcomingGames } from "../../../services/GameService";
 
 const useHome = (path: string) => {
     const { listOfGames, isGamesLoading, updateListOfGames, updateNextListOfGamesURL, updateLoading } = useGameStore(
@@ -23,6 +23,14 @@ const useHome = (path: string) => {
             case "/popular":
                 updateLoading("isGamesLoading", true);
                 games = await getPopularGames();
+                break;
+            case "/new-releases":
+                updateLoading("isGamesLoading", true);
+                games = await getNewGames();
+                break;
+            case "/upcoming":
+                updateLoading("isGamesLoading", true);
+                games = await getUpcomingGames();
                 break;
             default:
                 updateLoading("isGamesLoading", true);

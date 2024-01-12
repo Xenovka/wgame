@@ -1,3 +1,5 @@
+import { addMonths, format, nextMonday, nextSunday, subYears } from "date-fns";
+
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 export const getListOfGames = async () => {
@@ -75,6 +77,43 @@ export const getPopularGames = async () => {
         });
 
         const result = await popularGames.json();
+        return result;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+export const getUpcomingGames = async () => {
+    const date = new Date();
+    const nextMondayWeek = format(nextSunday(date), "yyyy-MM-dd");
+    const nextMondayMonth = format(addMonths(nextMonday(date), 4), "yyyy-MM-dd");
+
+    try {
+        const upcomingGames = await fetch(
+            `https://api.rawg.io/api/games?dates=${nextMondayWeek},${nextMondayMonth}&key=${API_KEY}`,
+            {
+                mode: "cors"
+            }
+        );
+
+        const result = await upcomingGames.json();
+        return result;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+export const getNewGames = async () => {
+    const date = new Date();
+    const lastYear = format(addMonths(subYears(date, 1), 8), "yyyy-MM-dd");
+    const today = format(date, "yyyy-MM-dd");
+
+    try {
+        const newGames = await fetch(`https://api.rawg.io/api/games?dates=${lastYear},${today}&key=${API_KEY}`, {
+            mode: "cors"
+        });
+
+        const result = await newGames.json();
         return result;
     } catch (error) {
         console.error(error);
