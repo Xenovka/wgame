@@ -5,12 +5,10 @@ import useHome from "./hooks/useHome";
 
 function HomePage() {
     const location = useLocation();
-    console.log(location.pathname);
 
-    const { listOfGames, isGamesLoading } = useHome(location.pathname);
+    const { listOfGames } = useHome(location.pathname);
 
     console.log(listOfGames);
-    console.log(isGamesLoading);
 
     return (
         <div className="grid grid-cols-12">

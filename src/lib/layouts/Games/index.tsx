@@ -1,21 +1,11 @@
-import { Spinner } from "@nextui-org/react";
 import GameCard from "../../components/GameCard";
+import Spinner from "../../components/Spinner";
 import useGame from "./hooks/useGame";
 
 function Games() {
     const { listOfGames, cardRef, isGamesLoading } = useGame();
 
-    if (isGamesLoading)
-        return (
-            <div className="w-full h-full grid col-span-10 justify-center items-center">
-                <Spinner
-                    className="flex justify-center items-center w-full h-full"
-                    label="Fetching Games..."
-                    color="default"
-                    size="lg"
-                />
-            </div>
-        );
+    if (isGamesLoading) return <Spinner />;
 
     return (
         <div className="col-start-3 col-span-10">
