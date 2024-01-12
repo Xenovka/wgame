@@ -8,6 +8,10 @@ interface State {
     prevListOfGamesURL: string;
     searchedGames: IGameResults[] | null;
     gameDetails: IGameResults | null;
+    isGamesLoading: boolean;
+    isGameDetailsLoading: boolean;
+    isSearchLoading: boolean;
+    isLoadingMoreGames: boolean;
 }
 
 interface Action {
@@ -16,6 +20,7 @@ interface Action {
     updatePrevListOfGamesURL: (prevListOfGamesURL: string) => void;
     updateSearchedGames: (searchedGames: IGameResults[] | null) => void;
     updateGameDetails: (gameId: string) => void;
+    updateLoading: (stateName: string, condition: boolean) => void;
 }
 
 export const useGameStore = create<State & Action>((set) => ({
@@ -23,6 +28,10 @@ export const useGameStore = create<State & Action>((set) => ({
     nextListOfGamesURL: "",
     prevListOfGamesURL: "",
     searchInput: "",
+    isGamesLoading: false,
+    isGameDetailsLoading: false,
+    isSearchLoading: false,
+    isLoadingMoreGames: false,
     searchedGames: null,
     gameDetails: null,
     updateListOfGames: (listOfGames) => set({ listOfGames }),
@@ -32,5 +41,6 @@ export const useGameStore = create<State & Action>((set) => ({
     updateGameDetails: async (gameId) => {
         const gameDetails = await getGameDetails(gameId);
         set({ gameDetails });
-    }
+    },
+    updateLoading: (stateName, condition) => set({ [stateName]: condition })
 }));

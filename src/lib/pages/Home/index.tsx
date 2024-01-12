@@ -1,21 +1,16 @@
-import { useLoaderData } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Games from "../../layouts/Games";
 import SideBar from "../../layouts/SideBar";
-import { IGames } from "../../types/Games";
-import useGame from "../../layouts/Games/hooks/useGame";
-import { useEffect } from "react";
+import useHome from "./hooks/useHome";
 
 function HomePage() {
-    const games: IGames = useLoaderData() as IGames;
-    const { fetchListOfGames } = useGame();
+    const location = useLocation();
+    console.log(location.pathname);
 
-    useEffect(() => {
-        fetchListOfGames(games);
+    const { listOfGames, isGamesLoading } = useHome(location.pathname);
 
-        return () => {};
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [games]);
+    console.log(listOfGames);
+    console.log(isGamesLoading);
 
     return (
         <div className="grid grid-cols-12">

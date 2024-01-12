@@ -2,30 +2,16 @@ import { createBrowserRouter } from "react-router-dom";
 
 import HomePage from "../lib/pages/Home";
 import DetailsPage from "../lib/pages/Details";
-import {
-    getGameDetails,
-    getGameScreenshots,
-    getGameTrailers,
-    getListOfGames,
-    getPopularGames
-} from "../lib/services/GameService";
+import { getGameDetails, getGameScreenshots, getGameTrailers } from "../lib/services/GameService";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <HomePage />,
-        loader: async () => {
-            const listOfGames = await getListOfGames();
-            return listOfGames;
-        }
+        element: <HomePage />
     },
     {
         path: "/popular",
-        element: <HomePage />,
-        loader: async () => {
-            const popularGames = await getPopularGames();
-            return popularGames;
-        }
+        element: <HomePage />
     },
     {
         path: "/game/:gameId",
