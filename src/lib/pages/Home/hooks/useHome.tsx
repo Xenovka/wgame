@@ -4,9 +4,8 @@ import { useGameStore } from "../../../store/GameStore";
 import { getListOfGames, getNewGames, getPopularGames, getUpcomingGames } from "../../../services/GameService";
 
 const useHome = (path: string) => {
-    const { listOfGames, isGamesLoading, updateListOfGames, updateNextListOfGamesURL, updateLoading } = useGameStore(
-        (state) => state
-    );
+    const { listOfGames, isGamesLoading, updateListOfGames, updateNextListOfGamesURL, updateConditionalState } =
+        useGameStore((state) => state);
 
     useEffect(() => {
         fetchListOfGames(path);
@@ -21,19 +20,19 @@ const useHome = (path: string) => {
 
         switch (path) {
             case "/popular":
-                updateLoading("isGamesLoading", true);
+                updateConditionalState("isGamesLoading", true);
                 games = await getPopularGames();
                 break;
             case "/new-releases":
-                updateLoading("isGamesLoading", true);
+                updateConditionalState("isGamesLoading", true);
                 games = await getNewGames();
                 break;
             case "/upcoming":
-                updateLoading("isGamesLoading", true);
+                updateConditionalState("isGamesLoading", true);
                 games = await getUpcomingGames();
                 break;
             default:
-                updateLoading("isGamesLoading", true);
+                updateConditionalState("isGamesLoading", true);
                 games = await getListOfGames();
                 break;
         }
@@ -41,7 +40,7 @@ const useHome = (path: string) => {
         updateListOfGames(games?.results);
         updateNextListOfGamesURL(games?.next);
 
-        updateLoading("isGamesLoading", false);
+        updateConditionalState("isGamesLoading", false);
     };
 
     return {

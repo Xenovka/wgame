@@ -11,7 +11,7 @@ const useGameDetails = (gameId: string) => {
         updateGameTrailers,
         isGameDetailsLoading,
         updateGameDetails,
-        updateLoading
+        updateConditionalState
     } = useGameStore((state) => state);
 
     useEffect(() => {
@@ -23,7 +23,7 @@ const useGameDetails = (gameId: string) => {
     }, [gameId]);
 
     const fetchGameDetails = async (gameId: string) => {
-        updateLoading("isGameDetailsLoading", true);
+        updateConditionalState("isGameDetailsLoading", true);
 
         const details = await getGameDetails(gameId);
         const screenshots = await getGameScreenshots(details.slug);
@@ -32,7 +32,7 @@ const useGameDetails = (gameId: string) => {
         updateGameDetails(details);
         updateGameScreenshots(screenshots);
         updateGameTrailers(trailers);
-        updateLoading("isGameDetailsLoading", false);
+        updateConditionalState("isGameDetailsLoading", false);
     };
 
     return { gameDetails, gameScreenshots, gameTrailers, isGameDetailsLoading };

@@ -14,6 +14,7 @@ interface State {
     isGameDetailsLoading: boolean;
     isSearchLoading: boolean;
     isLoadingMoreGames: boolean;
+    isSearchOpen: boolean;
 }
 
 interface Action {
@@ -22,7 +23,7 @@ interface Action {
     updatePrevListOfGamesURL: (prevListOfGamesURL: string) => void;
     updateSearchedGames: (searchedGames: IGameResults[] | null) => void;
     updateGameDetails: (gameDetails: IGameDetails) => void;
-    updateLoading: (stateName: string, condition: boolean) => void;
+    updateConditionalState: (stateName: string, condition: boolean) => void;
     updateGameScreenshots: (gameScreenshots: IGameScreenshots) => void;
     updateGameTrailers: (gameTrailers: IGameTrailers) => void;
 }
@@ -36,6 +37,7 @@ export const useGameStore = create<State & Action>((set) => ({
     isGameDetailsLoading: false,
     isSearchLoading: false,
     isLoadingMoreGames: false,
+    isSearchOpen: false,
     searchedGames: null,
     gameDetails: null,
     gameScreenshots: null,
@@ -45,7 +47,7 @@ export const useGameStore = create<State & Action>((set) => ({
     updatePrevListOfGamesURL: (prevListOfGamesURL) => set({ prevListOfGamesURL }),
     updateSearchedGames: (searchedGames) => set({ searchedGames }),
     updateGameDetails: (gameDetails) => set({ gameDetails }),
-    updateLoading: (stateName, condition) => set({ [stateName]: condition }),
+    updateConditionalState: (stateName, condition) => set({ [stateName]: condition }),
     updateGameScreenshots: (gameScreenshots) => set({ gameScreenshots }),
     updateGameTrailers: (gameTrailers) => set({ gameTrailers })
 }));

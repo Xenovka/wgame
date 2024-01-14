@@ -5,8 +5,15 @@ import { useGameStore } from "../../../store/GameStore";
 import { IGames } from "../../../types/Games";
 
 const useGame = () => {
-    const { listOfGames, isGamesLoading, updateListOfGames, nextListOfGamesURL, updateNextListOfGamesURL } =
-        useGameStore((state) => state);
+    const {
+        listOfGames,
+        isGamesLoading,
+        isLoadingMoreGames,
+        updateConditionalState,
+        updateListOfGames,
+        nextListOfGamesURL,
+        updateNextListOfGamesURL
+    } = useGameStore((state) => state);
 
     const cardRef = useRef<HTMLDivElement>(null);
 
@@ -15,6 +22,7 @@ const useGame = () => {
             async (entries) => {
                 const lastCard = entries[0];
                 if (lastCard.isIntersecting) {
+                    updateConditionalState("isLoadingMoreGames", true);
                     fetchNextListOfGames();
                     observer.unobserve(lastCard.target);
                 }
@@ -43,7 +51,7 @@ const useGame = () => {
         updateNextListOfGamesURL(nextList.next);
     };
 
-    return { cardRef, listOfGames, isGamesLoading };
+    return { cardRef, listOfGames, isGamesLoading, isLoadingMoreGames };
 };
 
 export default useGame;

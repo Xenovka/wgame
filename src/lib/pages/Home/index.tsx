@@ -6,9 +6,7 @@ import useHome from "./hooks/useHome";
 function HomePage() {
     const location = useLocation();
 
-    const { listOfGames } = useHome(location.pathname);
-
-    console.log(listOfGames);
+    useHome(location.pathname);
 
     return (
         <div className="grid grid-cols-12">

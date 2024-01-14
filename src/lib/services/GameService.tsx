@@ -29,8 +29,6 @@ export const searchGames = async (keyword: string) => {
 };
 
 export const getGameDetails = async (gameId: string) => {
-    console.log(gameId);
-
     try {
         const gameDetails = await fetch(`https://api.rawg.io/api/games/${gameId}?key=${API_KEY}`, {
             mode: "cors"

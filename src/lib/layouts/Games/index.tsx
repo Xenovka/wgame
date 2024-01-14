@@ -3,9 +3,9 @@ import Spinner from "../../components/Spinner";
 import useGame from "./hooks/useGame";
 
 function Games() {
-    const { listOfGames, cardRef, isGamesLoading } = useGame();
+    const { listOfGames, cardRef, isGamesLoading, isLoadingMoreGames } = useGame();
 
-    if (isGamesLoading) return <Spinner />;
+    if (isGamesLoading) return <Spinner label="Fetching Games..." fullHeight />;
 
     return (
         <div className="col-start-3 col-span-10">
@@ -14,6 +14,11 @@ function Games() {
                     <GameCard key={index} game={game} cardRef={index === listOfGames.length - 1 ? cardRef : null} />
                 ))}
             </div>
+            {isLoadingMoreGames && (
+                <div className="w-full h-fit my-4">
+                    <Spinner label="Loading Games..." />
+                </div>
+            )}
         </div>
     );
 }

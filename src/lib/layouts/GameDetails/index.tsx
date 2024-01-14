@@ -13,7 +13,7 @@ function GameDetails() {
 
     console.log(gameDetails);
 
-    if (isGameDetailsLoading) return <Spinner />;
+    if (isGameDetailsLoading) return <Spinner label="Fetchin Games..." fullHeight />;
 
     return (
         <Fragment>
