@@ -1,12 +1,28 @@
-import { signInWithPopup, signOut } from "firebase/auth";
-import { GoogleAuthProvider } from "firebase/auth/cordova";
+import { inMemoryPersistence, setPersistence, signInWithPopup, signOut } from "firebase/auth";
 import { auth, provider } from "../../config";
 
-export const SignIn = async () => {
+setPersistence(auth, inMemoryPersistence)
+    .then(() => {
+        return signInWithPopup(auth, provider);
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+        console.error(errorMessage, errorCode);
+    });
+
+export const SignInWithGoogle = async () => {
     try {
+        if (auth.currentUser) {
+            console.log("Already signed in.");
+            return auth.currentUser;
+        }
+
+        console.log("Signed in.");
+
         const result = await signInWithPopup(auth, provider);
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        console.log(credential);
+        return result.user;
     } catch (error) {
         console.error(error);
     }

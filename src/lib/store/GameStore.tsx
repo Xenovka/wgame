@@ -1,11 +1,13 @@
 import { create } from "zustand";
 import { IGameResults, IGameScreenshots, IGameTrailers } from "../types/Games";
 import { IGameDetails } from "../types/GameDetails";
+import { User } from "firebase/auth";
 
 interface State {
     listOfGames: IGameResults[] | null;
     nextListOfGamesURL: string;
     prevListOfGamesURL: string;
+    userCredentials: User | null;
     searchedGames: IGameResults[] | null;
     gameDetails: IGameDetails | null;
     gameScreenshots: IGameScreenshots | null;
@@ -26,10 +28,12 @@ interface Action {
     updateConditionalState: (stateName: string, condition: boolean) => void;
     updateGameScreenshots: (gameScreenshots: IGameScreenshots) => void;
     updateGameTrailers: (gameTrailers: IGameTrailers) => void;
+    updateUserCredentials: (credentials: User | null) => void;
 }
 
 export const useGameStore = create<State & Action>((set) => ({
     listOfGames: null,
+    userCredentials: null,
     nextListOfGamesURL: "",
     prevListOfGamesURL: "",
     searchInput: "",
@@ -49,5 +53,6 @@ export const useGameStore = create<State & Action>((set) => ({
     updateGameDetails: (gameDetails) => set({ gameDetails }),
     updateConditionalState: (stateName, condition) => set({ [stateName]: condition }),
     updateGameScreenshots: (gameScreenshots) => set({ gameScreenshots }),
-    updateGameTrailers: (gameTrailers) => set({ gameTrailers })
+    updateGameTrailers: (gameTrailers) => set({ gameTrailers }),
+    updateUserCredentials: (credentials) => set({ userCredentials: credentials })
 }));

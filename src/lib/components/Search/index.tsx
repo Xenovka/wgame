@@ -4,8 +4,6 @@ import useSearch from "./hooks/useSearch";
 function Search() {
     const { searchedGames, onSearchGames, isSearchLoading, isSearchOpen } = useSearch();
 
-    console.log(isSearchLoading);
-
     return (
         <div className="relative grid col-span-8 py-4 w-full">
             <input
