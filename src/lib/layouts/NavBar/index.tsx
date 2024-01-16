@@ -18,7 +18,7 @@ function NavBar() {
             <div className="col-span-2 flex items-center gap-4 justify-center">
                 {userCredentials ? (
                     <Fragment>
-                        <div className="w-5/12 px-4 overflow-hidden text-ellipsis whitespace-nowrap">
+                        <div className="w-5/12 px-4 overflow-hidden text-right text-ellipsis whitespace-nowrap">
                             Hi, {userCredentials.displayName}
                         </div>
                         <Avatar

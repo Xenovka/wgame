@@ -10,7 +10,7 @@ function Spinner({ label, fullHeight }: IProps) {
                 fullHeight ? "h-screen" : "h-full"
             } flex flex-col col-span-10 gap-4 justify-center items-center`}
         >
-            <span className="loader w-fit h-fit"></span>
+            <span className="loader w-fit h-fit m-6"></span>
             <p>{label}</p>
         </div>
     );

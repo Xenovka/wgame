@@ -8,7 +8,7 @@ function GameCard({ game, cardRef }: { game: IGameResults; cardRef: RefObject<HT
 
     return (
         <Card
-            className="bg-neutral-800 bg-opacity-30 rounded-xl game-card"
+            className="bg-neutral-400 bg-opacity-25 rounded-xl game-card p-4"
             ref={cardRef}
             isPressable
             disableRipple
@@ -16,18 +16,15 @@ function GameCard({ game, cardRef }: { game: IGameResults; cardRef: RefObject<HT
                 navigate(`/game/${game.id}`);
             }}
         >
-            <CardHeader className="w-full overflow-hidden p-0">
+            <CardHeader className="w-full overflow-hidden p-0 rounded-xl">
                 <img
                     alt="Card background"
                     className="w-full h-52 inline-block bg-contain card-image ease-in duration-200"
                     src={game.background_image}
                 />
             </CardHeader>
-            <CardBody className="p-4 flex-col gap-2 m-2">
-                <h2 className="text-left font-bold text-large leading-5">{game.name}</h2>
-                <p>
-                    ⭐ {game.rating}/5 ({game.ratings_count})
-                </p>
+            <CardBody className="flex-col gap-2 py-3 px-0">
+                <h2 className="text-left text-medium leading-5">{game.name}</h2>
             </CardBody>
         </Card>
     );
