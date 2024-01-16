@@ -6,8 +6,8 @@ import DetailsPage from "./lib/pages/Details";
 
 function App() {
     return (
-        <NextThemesProvider>
-            <main className="dark text-foreground p-4">
+        <NextThemesProvider attribute="class" defaultTheme="dark">
+            <main>
                 <NavBar />
                 <Routes>
                     <Route path="/" element={<HomePage />} />
